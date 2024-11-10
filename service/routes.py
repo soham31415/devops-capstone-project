@@ -1,6 +1,7 @@
 """
 Account Service
 This is Soham Phadke
+Hello World!
 
 This microservice handles the lifecycle of Accounts
 """
@@ -23,6 +24,8 @@ def health():
 ######################################################################
 # GET INDEX
 ######################################################################
+
+
 @app.route("/")
 def index():
     """Root URL response"""
@@ -39,6 +42,8 @@ def index():
 ######################################################################
 # CREATE A NEW ACCOUNT
 ######################################################################
+
+
 @app.route("/accounts", methods=["POST"])
 def create_accounts():
     """
@@ -57,6 +62,7 @@ def create_accounts():
     return make_response(
         jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
     )
+
 
 ######################################################################
 # LIST ALL ACCOUNTS
@@ -93,9 +99,11 @@ def list_accounts():
 #     #     status.HTTP_404_NOT_FOUND, f"Account with id [{id}] could not be found."
 #     return response.serialize(), status.HTTP_200_OK
 
-    ######################################################################
-    # READ AN ACCOUNT
-    ######################################################################
+######################################################################
+# READ AN ACCOUNT
+######################################################################
+
+
 @app.route("/accounts/<int:account_id>", methods=["GET"])
 def get_account(account_id):
     """
@@ -111,7 +119,6 @@ def get_account(account_id):
     return account.serialize(), status.HTTP_200_OK
 
 
-
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
@@ -119,10 +126,6 @@ def get_account(account_id):
 
 @app.route("/accounts/<int:account_id>", methods=["PUT"])
 def update_accounts(account_id):
-    """
-    Update an Account
-    This endpoint will update an Account based on the posted data
-    """
     app.logger.info("Request to update an Account with id: %s", account_id)
     account = Account.find(account_id)
     if not account:
@@ -136,7 +139,7 @@ def update_accounts(account_id):
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+
 @app.route("/accounts/<int:account_id>", methods=["DELETE"])
 def delete_accounts(account_id):
     """
